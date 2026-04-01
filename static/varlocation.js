@@ -1,0 +1,21 @@
+var locations = {
+  "Main Gate": [24.9272,86.2269],
+  "Security Room": [24.9273,86.2271],
+  "Parking Area": [24.9273,86.2263],
+  "Administrative Block": [24.9282,86.2269],
+  "Principal Office": [24.9283,86.2270],
+  "Examination Cell": [24.9283,86.2268],
+  "Accounts Section": [24.9282,86.2267],
+  "ATM": [24.9278,86.2272],
+  "Academic Block A": [24.9290,86.2260],
+  "CSE Department": [24.9290,86.2259],
+  "Computer Lab 1": [24.9291,86.2259],
+  "Computer Lab 2": [24.9292,86.2260],
+  "Academic Block B": [24.9290,86.2275],
+  "ECE Department": [24.9290,86.2275],
+  "EE Department": [24.9291,86.2276],
+  "Electronics Lab": [24.9291,86.2274],
+  "Academic Block C": [24.9295,86.2268],
+  "Civil Department": [24.9295,86.2268],
+  "Mechanical Department": [24.9296,86.2269]
+};
