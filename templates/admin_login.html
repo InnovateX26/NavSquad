@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student login</title>
+  <style>
+    body {
+     background-image: url("image.jpg");
+     background-size:cover;
+     background-repeat: no-repeat;
+     background-position:center;
+     height:100%;
+   
+    }
+    
+
+
+    .box {
+      background: rgba(93, 107, 199, 0.902);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      width: 420px;
+      margin: 70px auto;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+    }
+
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      width: 85%;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #03080e;
+      color: rgb(200, 139, 16);
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .result-box {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="box" id="loginPage">
+  <h2>Student login</h2>
+  <input type="text" id="user" placeholder="Username"><br>
+  <input type="password" id="pass" placeholder="Password"><br>
+  <button onclick="login()">Login</button>
+</div>
+
+<!-- ROUTE -->
+<div class="box hidden" id="routePage">
+  <h2>Select Route</h2>
+
+  <select id="start">
+    <option>College Gate</option>
+    <option>Library</option>
+    <option>Academic Block</option>
+    <option>Computer Lab</option>
+    <option>KYP Lab</option>
+    <option>Language Lab</option>
+    <option>Principal Chamber</option>
+    <option>Examination Section</option>
+    <option>Ground</option>
+  </select><br>
+
+  <select id="end">
+    <option>Library</option>
+    <option>Academic Block</option>
+    <option>Computer Lab</option>
+    <option>KYP Lab</option>
+    <option>Language Lab</option>
+    <option>Principal Chamber</option>
+    <option>Examination Section</option>
+    <option>Ground</option>
+  </select><br>
+
+  <button onclick="startNavigation()">Start Navigation</button>
+</div>
+
+<!-- NAVIGATION -->
+<div class="box hidden" id="navPage">
+  <h2>Live Navigation</h2>
+
+  <div id="direction" class="result-box"></div>
+
+  <button onclick="correctStep()">Correct</button>
+  <button on click="wrongStep()"> Wrong</button>
+
+  <br><br>
+  <button onclick="nextStep()">Next Step</button>
+  <button onclick="goHome()">Back to Start</button>
+</div>
+
+<script>
+
+let steps = [];
+let current = 0;
+
+// LOGIN
+function login() {
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if(u && p){
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("routePage").classList.remove("hidden");
+  } else {
+    alert("Enter details!");
+  }
+}
+
+// START NAVIGATION
+function startNavigation() {
+  let s = document.getElementById("start").value;
+  let e = document.getElementById("end").value;
+
+  document.getElementById("routePage").classList.add("hidden");
+  document.getElementById("navPage").classList.remove("hidden");
+
+  // SIMPLE SMART ROUTES
+  steps = [
+    "Start from " + s,
+    "Go straight",
+    "Follow campus road",
+    "Reach " + e
+  ];
+
+  current = 0;
+  showStep();
+}
+
+// SHOW STEP
+function showStep() {
+  document.getElementById("direction").innerText = steps[current];
+  speak(steps[current]);
+}
+
+// NEXT STEP
+function nextStep() {
+  if(current < steps.length - 1){
+    current++;
+    showStep();
+  } else {
+    speak("Destination reached");
+  }
+}
+
+// CORRECT
+function correctStep() {
+  speak("You are going in correct direction");
+}
+
+// WRONG
+function wrongStep() {
+  speak("Wrong direction, please go back");
+}
+
+// VOICE TRY
+function speak(text){
+  let speech = new SpeechSynthesisUtterance(text);
+
+  let voices = speechSynthesis.getVoices();
+  for(let i=0; i<voices.length; i++){
+    if(voices[i].name.toLowerCase().includes("female") || voices[i].name.toLowerCase().includes("google")){
+      speech.voice = voices[i];
+      break;
+    }
+  }
+
+  window.speechSynthesis.speak(speech);
+}
+
+//  BACK TO LOGIN
+function goHome(){
+  document.getElementById("navPage").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
