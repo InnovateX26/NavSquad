@@ -15,3 +15,6 @@ locations.append({"name":"Academic Block A","lat":24.9290,"lon":86.2260})
 @app.route("/")
 def home():
     return render_template("index.html")
+@app.route("/locations")
+def get_locations():
+    return jsonify(locations)
