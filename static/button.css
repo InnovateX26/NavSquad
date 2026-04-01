@@ -1,0 +1,6 @@
+select, button {
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
