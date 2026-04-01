@@ -12,3 +12,6 @@ locations.append({"name":"Examination Cell","lat":24.9283,"lon":86.2268})
 locations.append({"name":"Accounts Section","lat":24.9282,"lon":86.2267})
 locations.append({"name":"ATM","lat":24.9278,"lon":86.2272})
 locations.append({"name":"Academic Block A","lat":24.9290,"lon":86.2260})
+@app.route("/")
+def home():
+    return render_template("index.html")
